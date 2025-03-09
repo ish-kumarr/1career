@@ -175,8 +175,8 @@ export default function WhyResearch() {
             <CarouselDots count={count} current={current} />
           </div>
         ) : (
-          // Desktop Grid View
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          // Desktop Flex Layout
+          <div className="flex flex-wrap justify-center gap-6 max-w-7xl mx-auto">
             {advantages.map((advantage, index) => (
               <motion.div
                 key={index}
@@ -184,7 +184,7 @@ export default function WhyResearch() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group"
+                className="group w-[calc(33.333%-1rem)] min-w-[300px] max-w-[400px]"
               >
                 <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 ease-out border border-gray-100 h-full relative overflow-hidden">
                   {/* Hover gradient overlay */}
