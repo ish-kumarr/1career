@@ -37,7 +37,7 @@ const Navigation = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-md' : ''}`}>
       <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image 
@@ -52,8 +52,8 @@ const Navigation = () => {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop Navigation - Now centered with negative margin */}
+          <div className="hidden md:flex items-center justify-center flex-1 space-x-8 -ml-[111px]">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} className={linkClass}>
                 {item.label}
@@ -71,7 +71,7 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
-              <button className={`md:hidden ${linkClass}`}>
+              <button className={`md:hidden ml-auto ${linkClass}`}>
                 <Menu className="w-6 h-6" />
               </button>
             </SheetTrigger>
@@ -90,7 +90,7 @@ const Navigation = () => {
                     {item.label}
                   </Link>
                 ))}
-                <Button href="#contact" variant="primary" className="mt-4">
+                <Button href="https://thecareerdiscovery.com/#contact" variant="primary" className="mt-4">
                   Contact Us
                 </Button>
               </div>
