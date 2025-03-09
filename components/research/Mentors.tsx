@@ -28,7 +28,7 @@ const mentors = [
     "title": "Professor",
     "institution": "IIM Bangalore",
     "institutionLogo": "/unilogo/IIM_Bangalore_Logo.png",
-    "image": "https://i.imgur.com/wPOtw0f.png",
+    "image": "https://i.imgur.com/GS2cAiI.jpeg",
     "linkedin": "https://www.linkedin.com/in/connect-gopinath",
     "expertise": ["Management", "Strategy", "Organizational Behavior"],
     "quote": "Bridging the gap between academic theory and real-world applications through innovative research."
@@ -48,7 +48,7 @@ const mentors = [
     "title": "Professor",
     "institution": "IIM Bangalore",
     "institutionLogo": "/unilogo/IIM_Bangalore_Logo.png",
-    "image": "https://i.imgur.com/wPOtw0f.png",
+    "image": "https://i.imgur.com/77BFLow.jpeg",
     "linkedin": "https://www.linkedin.com/in/sourav-mukherji-023462",
     "expertise": ["Finance", "Economics", "Financial Modeling"],
     "quote": "Guiding the next generation of researchers to push boundaries and create impactful knowledge."
@@ -58,7 +58,7 @@ const mentors = [
     "title": "Professor of Economics",
     "institution": "Columbia University",
     "institutionLogo": "/unilogo/columbia university.png",
-    "image": "https://i.imgur.com/wPOtw0f.png",
+    "image": "https://i.imgur.com/VddqrGS.jpeg",
     "linkedin": "https://www.linkedin.com/in/rajiv-sethi-0475a3a/",
     "expertise": ["Game Theory", "Economic Theory", "Microeconomics"],
     "quote": "Fostering critical thinking and analytical skills through collaborative research projects."
