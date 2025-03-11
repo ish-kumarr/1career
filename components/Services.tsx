@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Book, Bot, Users, Notebook as Robot, Mic, Megaphone, ShoppingBag, Globe, Heart, ArrowRight, ChevronLeft, ChevronRight, BookOpen, Cpu, UserPlus, Wrench, Headphones, Share2, Store, Globe2, HeartHandshake } from 'lucide-react'
+import { Book, Bot, Users, Notebook as Robot, Mic, Megaphone, ShoppingBag, Globe, Heart, ArrowRight, ChevronLeft, ChevronRight, BookOpen, Cpu, UserPlus, Wrench, Headphones, Share2, Store, Globe2, HeartHandshake, MousePointerClick, MousePointer } from 'lucide-react'
 import SectionHeading from './SectionHeading'
 import CareerPathwaysModal from './CareerPathwaysModal'
 import {
@@ -176,7 +176,7 @@ const CareerCard = ({ career, isMobile }) => {
 
   return (
     <div 
-      className={`relative w-full ${isMobile ? 'h-[400px]' : 'h-[320px]'} cursor-pointer perspective`}
+      className={`relative w-full ${isMobile ? 'h-[300px]' : 'h-[320px]'} cursor-pointer perspective`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => isMobile && setIsFlipped(!isFlipped)}
@@ -189,31 +189,29 @@ const CareerCard = ({ career, isMobile }) => {
         style={{ transformStyle: "preserve-3d" }}
       >
         {/* Front of card */}
-        <div className={`absolute w-full h-full rounded-xl shadow-lg p-6 flex flex-col justify-between backface-hidden bg-gradient-to-br ${career.gradient}`}>
+        <div className={`absolute w-full h-full rounded-xl shadow-lg p-4 flex flex-col justify-between backface-hidden bg-gradient-to-br ${career.gradient}`}>
           <div>
-            <career.icon className="w-12 h-12 text-white mb-4" />
-            <h3 className="text-2xl font-bold mb-4 text-white">{career.title}</h3>
+            <career.icon className="w-10 h-10 text-white mb-3" />
+            <h3 className="text-xl font-bold mb-3 text-white">{career.title}</h3>
             <ul className="text-sm text-white">
               {career.details.map((detail, index) => (
-                <li key={index} className="mb-2 flex items-center">
+                <li key={index} className="mb-1.5 flex items-center">
                   <ArrowRight className="w-4 h-4 mr-2 flex-shrink-0" />
                   <span>{detail}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="mt-4">
-            {isMobile && (
-              <button 
-                className="text-white text-sm font-medium underline opacity-80 hover:opacity-100 transition-opacity"
-                onClick={handleFlip}
-              >
-                View More
-              </button>
-            )}
-            {!isMobile && (
-              <div className="text-white text-sm font-medium opacity-80">
-                Hover to see more
+          <div className="mt-2 flex items-center justify-center">
+            {isMobile ? (
+              <div className="flex items-center gap-2 text-white/80 text-sm">
+                <MousePointerClick className="w-4 h-4 animate-bounce" />
+                <span>Tap to see outcomes</span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 text-white/80 text-sm">
+                <MousePointer className="w-4 h-4" />
+                <span>Hover to see outcomes</span>
               </div>
             )}
           </div>
@@ -221,34 +219,34 @@ const CareerCard = ({ career, isMobile }) => {
 
         {/* Back of card */}
         <div 
-          className={`absolute w-full h-full rounded-xl shadow-lg p-6 flex flex-col justify-between backface-hidden bg-gradient-to-br ${career.gradient}`} 
+          className={`absolute w-full h-full rounded-xl shadow-lg p-4 flex flex-col justify-between backface-hidden bg-gradient-to-br ${career.gradient}`} 
           style={{ transform: "rotateY(180deg)" }}
         >
           <div>
-            <h3 className="text-2xl font-bold mb-4 text-white">What You'll Achieve</h3>
-            <ul className="mb-4 text-white space-y-4">
+            <h3 className="text-xl font-bold mb-4 text-white">What You'll Achieve</h3>
+            <ul className="space-y-4">
               {career.outcomes.map((outcome, index) => (
-                <li key={index} className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mr-3 shadow-lg">
-                    <outcome.icon className="w-5 h-5 text-white" />
+                <li key={index} className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0 shadow-lg">
+                    <outcome.icon className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-lg">{outcome.text}</span>
+                  <div className="flex-1">
+                    <span className="text-base text-white">{outcome.text}</span>
+                  </div>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="mt-4">
-            {isMobile && (
-              <button 
-                className="text-white text-sm font-medium underline opacity-80 hover:opacity-100 transition-opacity"
-                onClick={handleFlip}
-              >
-                Flip Back
-              </button>
-            )}
-            {!isMobile && (
-              <div className="text-white text-sm font-medium opacity-80">
-                Move mouse away to flip back
+          <div className="mt-2 flex items-center justify-center">
+            {isMobile ? (
+              <div className="flex items-center gap-2 text-white/80 text-sm">
+                <MousePointerClick className="w-4 h-4 animate-bounce" />
+                <span>Tap to flip back</span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 text-white/80 text-sm">
+                <MousePointer className="w-4 h-4" />
+                <span>Move mouse away to flip back</span>
               </div>
             )}
           </div>
@@ -298,7 +296,8 @@ const Services = () => {
           subtitle="Discover diverse opportunities and their potential outcomes tailored to your interests and abilities"
         />
         
-        <div className="relative max-w-7xl mx-auto mt-16">
+        {/* Desktop Carousel */}
+        <div className="relative max-w-7xl mx-auto mt-16 hidden md:block">
           <Carousel
             opts={{
               align: "start",
@@ -310,14 +309,7 @@ const Services = () => {
             <CarouselContent className="-ml-4">
               {careerPathways.map((career, index) => (
                 <CarouselItem key={index} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <CareerCard career={career} isMobile={false} />
-                  </motion.div>
+                  <CareerCard career={career} isMobile={false} />
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -340,6 +332,59 @@ const Services = () => {
                 className="group flex items-center justify-center w-12 h-12 rounded-full border border-gray-200 hover:border-[#356bff]/20 hover:bg-[#356bff]/5 transition-colors"
               >
                 <ChevronRight className="w-6 h-6 text-gray-600 group-hover:text-[#356bff] transition-transform group-hover:translate-x-1" />
+              </button>
+            </div>
+          </Carousel>
+        </div>
+
+        {/* Mobile Carousel */}
+        <div className="md:hidden mt-8">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+            setApi={setApi}
+          >
+            <CarouselContent>
+              {careerPathways.map((career, index) => (
+                <CarouselItem key={index} className="pl-4 basis-full">
+                  <div className="px-2">
+                    <CareerCard career={career} isMobile={true} />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+
+            <div className="flex items-center justify-center gap-4 mt-6">
+              <button
+                onClick={() => api?.scrollPrev()}
+                className="p-2 rounded-full border border-gray-200 hover:bg-gray-100"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="w-5 h-5 text-gray-600" />
+              </button>
+              
+              <div className="flex gap-1">
+                {careerPathways.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      index === current 
+                        ? 'w-6 bg-primary' 
+                        : 'w-1.5 bg-gray-300'
+                    }`}
+                  />
+                ))}
+              </div>
+              
+              <button
+                onClick={() => api?.scrollNext()}
+                className="p-2 rounded-full border border-gray-200 hover:bg-gray-100"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="w-5 h-5 text-gray-600" />
               </button>
             </div>
           </Carousel>
