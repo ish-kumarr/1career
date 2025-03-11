@@ -35,6 +35,12 @@ const recruiters = [
     logo: "https://i.imgur.com/8ckjgVF.jpeg",
     description: "Sports technology platform",
     link: "https://www.instagram.com/mabrijsports/"
+  },
+  {
+    name: "MyGov",
+    logo: "https://i.imgur.com/gW1xWNx.jpeg",
+    description: "Government of India",
+    link: "https://www.instagram.com/mygovindia/"
   }
 ]
 
