@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Book, Bot, Users, Notebook as Robot, Mic, Megaphone, ShoppingBag, Globe, Heart, ArrowRight, ChevronLeft, ChevronRight, BookOpen, Cpu, UserPlus, Wrench, Headphones, Share2, Store, Globe2, HeartHandshake, MousePointerClick, MousePointer } from 'lucide-react'
+import { Book, Bot, Users, Notebook as Robot, Mic, Megaphone, ShoppingBag, Globe, Heart, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import SectionHeading from './SectionHeading'
 import CareerPathwaysModal from './CareerPathwaysModal'
 import {
@@ -23,9 +23,9 @@ const careerPathways = [
       "Professional Editing & Proofreading"
     ],
     outcomes: [
-      { text: "A fully written & formatted book", icon: BookOpen },
-      { text: "A launch plan & publishing roadmap", icon: Share2 },
-      { text: "A writing portfolio & author brand", icon: UserPlus }
+      "📖 A fully written & formatted book",
+      "📖 A launch plan & publishing roadmap",
+      "📖 A writing portfolio & author brand"
     ],
     gradient: "from-amber-400 to-orange-500"
   },
@@ -39,9 +39,9 @@ const careerPathways = [
       "Integration & Deployment Support"
     ],
     outcomes: [
-      { text: "Fully functional AI chatbot", icon: Cpu },
-      { text: "Technical documentation", icon: BookOpen },
-      { text: "Deployment portfolio", icon: Share2 }
+      "🤖 Fully functional AI chatbot",
+      "🤖 Technical documentation",
+      "🤖 Deployment portfolio"
     ],
     gradient: "from-blue-400 to-indigo-500"
   },
@@ -55,9 +55,9 @@ const careerPathways = [
       "Monetization Strategies"
     ],
     outcomes: [
-      { text: "Strong social media presence", icon: UserPlus },
-      { text: "Engaged follower community", icon: Users },
-      { text: "Brand collaboration portfolio", icon: Share2 }
+      "🌟 Strong social media presence",
+      "🌟 Engaged follower community",
+      "🌟 Brand collaboration portfolio"
     ],
     gradient: "from-pink-400 to-purple-500"
   },
@@ -71,9 +71,9 @@ const careerPathways = [
       "Testing & Optimization"
     ],
     outcomes: [
-      { text: "Working robot prototype", icon: Wrench },
-      { text: "Technical documentation", icon: BookOpen },
-      { text: "Engineering portfolio", icon: Share2 }
+      "🤖 Working robot prototype",
+      "🤖 Technical documentation",
+      "🤖 Engineering portfolio"
     ],
     gradient: "from-green-400 to-teal-500"
   },
@@ -87,9 +87,9 @@ const careerPathways = [
       "Distribution Strategy"
     ],
     outcomes: [
-      { text: "Live podcast show", icon: Headphones },
-      { text: "Production portfolio", icon: Share2 },
-      { text: "Audience growth strategy", icon: UserPlus }
+      "🎙️ Live podcast show",
+      "🎙️ Production portfolio",
+      "🎙️ Audience growth strategy"
     ],
     gradient: "from-red-400 to-pink-500"
   },
@@ -103,9 +103,9 @@ const careerPathways = [
       "Team Management"
     ],
     outcomes: [
-      { text: "Operational agency", icon: Wrench },
-      { text: "Client portfolio", icon: Users },
-      { text: "Growth roadmap", icon: Share2 }
+      "🚀 Operational agency",
+      "🚀 Client portfolio",
+      "🚀 Growth roadmap"
     ],
     gradient: "from-violet-400 to-purple-500"
   },
@@ -119,9 +119,9 @@ const careerPathways = [
       "Digital Marketing Strategy"
     ],
     outcomes: [
-      { text: "Active online store", icon: Store },
-      { text: "Sales framework", icon: Share2 },
-      { text: "Business portfolio", icon: BookOpen }
+      "💼 Active online store",
+      "💼 Sales framework",
+      "💼 Business portfolio"
     ],
     gradient: "from-cyan-400 to-blue-500"
   },
@@ -135,9 +135,9 @@ const careerPathways = [
       "SEO Optimization"
     ],
     outcomes: [
-      { text: "Live website", icon: Globe2 },
-      { text: "Design portfolio", icon: Share2 },
-      { text: "Technical documentation", icon: BookOpen }
+      "🌐 Live website",
+      "🌐 Design portfolio",
+      "🌐 Technical documentation"
     ],
     gradient: "from-yellow-400 to-orange-500"
   },
@@ -151,9 +151,9 @@ const careerPathways = [
       "Community Engagement"
     ],
     outcomes: [
-      { text: "Registered NPO", icon: HeartHandshake },
-      { text: "Impact portfolio", icon: Share2 },
-      { text: "Sustainability plan", icon: BookOpen }
+      "💝 Registered NPO",
+      "💝 Impact portfolio",
+      "💝 Sustainability plan"
     ],
     gradient: "from-emerald-400 to-green-500"
   }
@@ -161,13 +161,6 @@ const careerPathways = [
 
 const CareerCard = ({ career, isMobile }) => {
   const [isFlipped, setIsFlipped] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
-
-  useEffect(() => {
-    if (!isMobile) {
-      setIsFlipped(isHovered);
-    }
-  }, [isHovered, isMobile]);
 
   const handleFlip = (e) => {
     e.stopPropagation()
@@ -176,10 +169,9 @@ const CareerCard = ({ career, isMobile }) => {
 
   return (
     <div 
-      className={`relative w-full ${isMobile ? 'h-[300px]' : 'h-[320px]'} cursor-pointer perspective`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onClick={() => isMobile && setIsFlipped(!isFlipped)}
+      className={`relative w-full ${isMobile ? 'h-[400px]' : 'h-[320px]'} cursor-pointer perspective`}
+      onMouseEnter={() => !isMobile && setIsFlipped(true)}
+      onMouseLeave={() => !isMobile && setIsFlipped(false)}
     >
       <motion.div
         className="w-full h-full"
@@ -189,67 +181,53 @@ const CareerCard = ({ career, isMobile }) => {
         style={{ transformStyle: "preserve-3d" }}
       >
         {/* Front of card */}
-        <div className={`absolute w-full h-full rounded-xl shadow-lg p-4 flex flex-col justify-between backface-hidden bg-gradient-to-br ${career.gradient}`}>
+        <div className={`absolute w-full h-full rounded-xl shadow-lg p-6 flex flex-col justify-between backface-hidden bg-gradient-to-br ${career.gradient}`}>
           <div>
-            <career.icon className="w-10 h-10 text-white mb-3" />
-            <h3 className="text-xl font-bold mb-3 text-white">{career.title}</h3>
+            <career.icon className="w-12 h-12 text-white mb-4" />
+            <h3 className="text-2xl font-bold mb-4 text-white">{career.title}</h3>
             <ul className="text-sm text-white">
               {career.details.map((detail, index) => (
-                <li key={index} className="mb-1.5 flex items-center">
+                <li key={index} className="mb-2 flex items-center">
                   <ArrowRight className="w-4 h-4 mr-2 flex-shrink-0" />
                   <span>{detail}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="mt-2 flex items-center justify-center">
-            {isMobile ? (
-              <div className="flex items-center gap-2 text-white/80 text-sm">
-                <MousePointerClick className="w-4 h-4 animate-bounce" />
-                <span>Tap to see outcomes</span>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2 text-white/80 text-sm">
-                <MousePointer className="w-4 h-4" />
-                <span>Hover to see outcomes</span>
-              </div>
-            )}
-          </div>
+          {isMobile && (
+            <button 
+              className="mt-4 text-white text-sm underline opacity-70"
+              onClick={handleFlip}
+            >
+              View outcomes
+            </button>
+          )}
         </div>
 
         {/* Back of card */}
         <div 
-          className={`absolute w-full h-full rounded-xl shadow-lg p-4 flex flex-col justify-between backface-hidden bg-gradient-to-br ${career.gradient}`} 
+          className={`absolute w-full h-full rounded-xl shadow-lg p-6 flex flex-col justify-between backface-hidden bg-gradient-to-br ${career.gradient}`} 
           style={{ transform: "rotateY(180deg)" }}
         >
           <div>
-            <h3 className="text-xl font-bold mb-4 text-white">What You'll Achieve</h3>
-            <ul className="space-y-4">
+            <h3 className="text-2xl font-bold mb-4 text-white">What You'll Achieve</h3>
+            <ul className="text-lg mb-4 text-white space-y-4">
               {career.outcomes.map((outcome, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0 shadow-lg">
-                    <outcome.icon className="w-4 h-4 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <span className="text-base text-white">{outcome.text}</span>
-                  </div>
+                <li key={index} className="flex items-center">
+                  <ArrowRight className="w-5 h-5 mr-2 flex-shrink-0" />
+                  <span>{outcome}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="mt-2 flex items-center justify-center">
-            {isMobile ? (
-              <div className="flex items-center gap-2 text-white/80 text-sm">
-                <MousePointerClick className="w-4 h-4 animate-bounce" />
-                <span>Tap to flip back</span>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2 text-white/80 text-sm">
-                <MousePointer className="w-4 h-4" />
-                <span>Move mouse away to flip back</span>
-              </div>
-            )}
-          </div>
+          {isMobile && (
+            <button 
+              className="mt-4 text-white text-sm underline opacity-70"
+              onClick={handleFlip}
+            >
+              View details
+            </button>
+          )}
         </div>
       </motion.div>
     </div>
@@ -270,15 +248,90 @@ const CarouselProgress = ({ current, total }) => (
   </div>
 )
 
-const Services = () => {
+const MobileCarousel = () => {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!api) return
     setCurrent(api.selectedScrollSnap())
     api.on("select", () => setCurrent(api.selectedScrollSnap()))
   }, [api])
+
+  return (
+    <div className="md:hidden">
+      <Carousel
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+        className="w-full"
+        setApi={setApi}
+      >
+        <CarouselContent>
+          {careerPathways.map((career, index) => (
+            <CarouselItem key={index} className="basis-full">
+              <div className="px-2">
+                <CareerCard career={career} isMobile={true} />
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+
+        <div className="flex items-center justify-center gap-4 mt-6">
+          <button
+            onClick={() => api?.scrollPrev()}
+            className="p-2 rounded-full border border-gray-200 hover:bg-gray-100"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="w-5 h-5 text-gray-600" />
+          </button>
+          
+          <div className="flex gap-1">
+            {careerPathways.map((_, index) => (
+              <div
+                key={index}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  index === current 
+                    ? 'w-6 bg-primary' 
+                    : 'w-1.5 bg-gray-300'
+                }`}
+              />
+            ))}
+          </div>
+          
+          <button
+            onClick={() => api?.scrollNext()}
+            className="p-2 rounded-full border border-gray-200 hover:bg-gray-100"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="w-5 h-5 text-gray-600" />
+          </button>
+        </div>
+      </Carousel>
+    </div>
+  )
+}
+
+const Services = () => {
+  const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
+
+  useEffect(() => {
+    if (!api) return
+    setCurrent(api.selectedScrollSnap())
+    api.on("select", () => setCurrent(api.selectedScrollSnap()))
+  }, [api])
+
+  const handlePrevClick = () => {
+    if (!api) return
+    api.scrollPrev()
+  }
+
+  const handleNextClick = () => {
+    if (!api) return
+    api.scrollNext()
+  }
 
   return (
     <section className="py-24 bg-gray-50 relative overflow-hidden">
@@ -316,7 +369,7 @@ const Services = () => {
 
             <div className="flex items-center justify-center gap-8 mt-8 md:mt-12">
               <button
-                onClick={() => api?.scrollPrev()}
+                onClick={handlePrevClick}
                 className="group flex items-center justify-center w-12 h-12 rounded-full border border-gray-200 hover:border-[#356bff]/20 hover:bg-[#356bff]/5 transition-colors"
               >
                 <ChevronLeft className="w-6 h-6 text-gray-600 group-hover:text-[#356bff] transition-transform group-hover:-translate-x-1" />
@@ -328,7 +381,7 @@ const Services = () => {
               />
               
               <button
-                onClick={() => api?.scrollNext()}
+                onClick={handleNextClick}
                 className="group flex items-center justify-center w-12 h-12 rounded-full border border-gray-200 hover:border-[#356bff]/20 hover:bg-[#356bff]/5 transition-colors"
               >
                 <ChevronRight className="w-6 h-6 text-gray-600 group-hover:text-[#356bff] transition-transform group-hover:translate-x-1" />
@@ -338,56 +391,8 @@ const Services = () => {
         </div>
 
         {/* Mobile Carousel */}
-        <div className="md:hidden mt-8">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-            setApi={setApi}
-          >
-            <CarouselContent>
-              {careerPathways.map((career, index) => (
-                <CarouselItem key={index} className="pl-4 basis-full">
-                  <div className="px-2">
-                    <CareerCard career={career} isMobile={true} />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-
-            <div className="flex items-center justify-center gap-4 mt-6">
-              <button
-                onClick={() => api?.scrollPrev()}
-                className="p-2 rounded-full border border-gray-200 hover:bg-gray-100"
-                aria-label="Previous slide"
-              >
-                <ChevronLeft className="w-5 h-5 text-gray-600" />
-              </button>
-              
-              <div className="flex gap-1">
-                {careerPathways.map((_, index) => (
-                  <div
-                    key={index}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      index === current 
-                        ? 'w-6 bg-primary' 
-                        : 'w-1.5 bg-gray-300'
-                    }`}
-                  />
-                ))}
-              </div>
-              
-              <button
-                onClick={() => api?.scrollNext()}
-                className="p-2 rounded-full border border-gray-200 hover:bg-gray-100"
-                aria-label="Next slide"
-              >
-                <ChevronRight className="w-5 h-5 text-gray-600" />
-              </button>
-            </div>
-          </Carousel>
+        <div className="mt-16">
+          <MobileCarousel />
         </div>
 
         <motion.div
