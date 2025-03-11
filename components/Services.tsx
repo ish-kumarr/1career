@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Book, Bot, Users, Notebook as Robot, Mic, Megaphone, ShoppingBag, Globe, Heart, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Book, Bot, Users, Notebook as Robot, Mic, Megaphone, ShoppingBag, Globe, Heart, ArrowRight, ChevronLeft, ChevronRight, Pen, Sparkle, Trophy, Rocket, Target, BrainCircuit, Radio, Presentation, Store, GraduationCap, HandHeart, MousePointerClick } from 'lucide-react'
 import SectionHeading from './SectionHeading'
 import CareerPathwaysModal from './CareerPathwaysModal'
 import {
@@ -23,9 +23,9 @@ const careerPathways = [
       "Professional Editing & Proofreading"
     ],
     outcomes: [
-      "📖 A fully written & formatted book",
-      "📖 A launch plan & publishing roadmap",
-      "📖 A writing portfolio & author brand"
+      { text: "A fully written & formatted book", icon: Pen },
+      { text: "A launch plan & publishing roadmap", icon: Rocket },
+      { text: "A writing portfolio & author brand", icon: Trophy }
     ],
     gradient: "from-amber-400 to-orange-500"
   },
@@ -39,9 +39,9 @@ const careerPathways = [
       "Integration & Deployment Support"
     ],
     outcomes: [
-      "🤖 Fully functional AI chatbot",
-      "🤖 Technical documentation",
-      "🤖 Deployment portfolio"
+      { text: "Fully functional AI chatbot", icon: BrainCircuit },
+      { text: "Technical documentation", icon: Target },
+      { text: "Deployment portfolio", icon: Rocket }
     ],
     gradient: "from-blue-400 to-indigo-500"
   },
@@ -55,9 +55,9 @@ const careerPathways = [
       "Monetization Strategies"
     ],
     outcomes: [
-      "🌟 Strong social media presence",
-      "🌟 Engaged follower community",
-      "🌟 Brand collaboration portfolio"
+      { text: "Strong social media presence", icon: Sparkle },
+      { text: "Engaged follower community", icon: Users },
+      { text: "Brand collaboration portfolio", icon: Trophy }
     ],
     gradient: "from-pink-400 to-purple-500"
   },
@@ -71,9 +71,9 @@ const careerPathways = [
       "Testing & Optimization"
     ],
     outcomes: [
-      "🤖 Working robot prototype",
-      "🤖 Technical documentation",
-      "🤖 Engineering portfolio"
+      { text: "Working robot prototype", icon: Bot },
+      { text: "Technical documentation", icon: Target },
+      { text: "Engineering portfolio", icon: Trophy }
     ],
     gradient: "from-green-400 to-teal-500"
   },
@@ -87,9 +87,9 @@ const careerPathways = [
       "Distribution Strategy"
     ],
     outcomes: [
-      "🎙️ Live podcast show",
-      "🎙️ Production portfolio",
-      "🎙️ Audience growth strategy"
+      { text: "Live podcast show", icon: Radio },
+      { text: "Production portfolio", icon: Presentation },
+      { text: "Audience growth strategy", icon: Target }
     ],
     gradient: "from-red-400 to-pink-500"
   },
@@ -103,9 +103,9 @@ const careerPathways = [
       "Team Management"
     ],
     outcomes: [
-      "🚀 Operational agency",
-      "🚀 Client portfolio",
-      "🚀 Growth roadmap"
+      { text: "Operational agency", icon: Store },
+      { text: "Client portfolio", icon: Users },
+      { text: "Growth roadmap", icon: Target }
     ],
     gradient: "from-violet-400 to-purple-500"
   },
@@ -119,9 +119,9 @@ const careerPathways = [
       "Digital Marketing Strategy"
     ],
     outcomes: [
-      "💼 Active online store",
-      "💼 Sales framework",
-      "💼 Business portfolio"
+      { text: "Active online store", icon: Store },
+      { text: "Sales framework", icon: Target },
+      { text: "Business portfolio", icon: Trophy }
     ],
     gradient: "from-cyan-400 to-blue-500"
   },
@@ -135,9 +135,9 @@ const careerPathways = [
       "SEO Optimization"
     ],
     outcomes: [
-      "🌐 Live website",
-      "🌐 Design portfolio",
-      "🌐 Technical documentation"
+      { text: "Live website", icon: Globe },
+      { text: "Design portfolio", icon: Sparkle },
+      { text: "Technical documentation", icon: Target }
     ],
     gradient: "from-yellow-400 to-orange-500"
   },
@@ -151,9 +151,9 @@ const careerPathways = [
       "Community Engagement"
     ],
     outcomes: [
-      "💝 Registered NPO",
-      "💝 Impact portfolio",
-      "💝 Sustainability plan"
+      { text: "Registered NPO", icon: HandHeart },
+      { text: "Impact portfolio", icon: GraduationCap },
+      { text: "Sustainability plan", icon: Target }
     ],
     gradient: "from-emerald-400 to-green-500"
   }
@@ -194,6 +194,12 @@ const CareerCard = ({ career, isMobile }) => {
               ))}
             </ul>
           </div>
+          {!isMobile && (
+            <div className="flex items-center justify-center text-white/70 text-sm mt-4">
+              <MousePointerClick className="w-4 h-4 mr-2" />
+              <span>Hover to see outcomes</span>
+            </div>
+          )}
           {isMobile && (
             <button 
               className="mt-4 text-white text-sm underline opacity-70"
@@ -210,16 +216,24 @@ const CareerCard = ({ career, isMobile }) => {
           style={{ transform: "rotateY(180deg)" }}
         >
           <div>
-            <h3 className="text-2xl font-bold mb-4 text-white">What You'll Achieve</h3>
-            <ul className="text-lg mb-4 text-white space-y-4">
+            <h3 className="text-2xl font-bold mb-6 text-white">What You'll Achieve</h3>
+            <ul className="space-y-6 text-white">
               {career.outcomes.map((outcome, index) => (
-                <li key={index} className="flex items-center">
-                  <ArrowRight className="w-5 h-5 mr-2 flex-shrink-0" />
-                  <span>{outcome}</span>
+                <li key={index} className="flex items-center gap-4">
+                  <div className="bg-white/20 p-2 rounded-lg">
+                    <outcome.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-lg">{outcome.text}</span>
                 </li>
               ))}
             </ul>
           </div>
+          {!isMobile && (
+            <div className="flex items-center justify-center text-white/70 text-sm mt-4">
+              <MousePointerClick className="w-4 h-4 mr-2" />
+              <span>Move mouse away to go back</span>
+            </div>
+          )}
           {isMobile && (
             <button 
               className="mt-4 text-white text-sm underline opacity-70"
