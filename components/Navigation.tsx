@@ -34,6 +34,17 @@ const Navigation = () => {
     { href: '/internship', label: 'Internship' },
   ]
 
+  const handleContactClick = () => {
+    setIsMobileMenuOpen(false) // Close the sheet
+    // Add a small delay to ensure the sheet closes before scrolling
+    setTimeout(() => {
+      const contactSection = document.getElementById('contact')
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' })
+      }
+    }, 100)
+  }
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-md' : ''}`}>
       <div className="container mx-auto px-6 py-4">
@@ -90,9 +101,12 @@ const Navigation = () => {
                     {item.label}
                   </Link>
                 ))}
-                <Button href="https://thecareerdiscovery.com/#contact" variant="primary" className="mt-4">
+                <button 
+                  onClick={handleContactClick}
+                  className="mt-4 inline-flex items-center justify-center rounded-full px-8 py-3 text-base font-medium bg-[#356bff] text-white hover:bg-[#2e5ee6]"
+                >
                   Contact Us
-                </Button>
+                </button>
               </div>
             </SheetContent>
           </Sheet>
