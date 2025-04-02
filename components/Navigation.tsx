@@ -29,7 +29,7 @@ const Navigation = () => {
   const linkClass = isScrolled ? "text-gray-900 hover:text-gray-600" : "text-white hover:text-gray-200"
 
   const navItems = [
-    { href: '/', label: 'Home' },
+    { href: '/', label: 'Career Lab' },
     { href: '/research', label: 'Research' },
     { href: '/internship', label: 'Internship' },
   ]
