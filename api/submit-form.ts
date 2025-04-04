@@ -62,8 +62,9 @@ async function handleNewsletterSubscription(email: string) {
         <style>
           body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
           .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-          .header { background-color: #4A90E2; color: white; padding: 20px; text-align: center; }
-          .content { background-color: #f9f9f9; padding: 20px; border-radius: 5px; }
+          .header { background-color: #356bff; color: white; padding: 20px; text-align: center; border-radius: 10px 10px 0 0; }
+          .content { background-color: #f9f9f9; padding: 20px; border-radius: 0 0 10px 10px; }
+          .email { font-weight: bold; color: #356bff; }
         </style>
       </head>
       <body>
@@ -73,7 +74,7 @@ async function handleNewsletterSubscription(email: string) {
           </div>
           <div class="content">
             <p>A new user has subscribed to the Career Discovery newsletter:</p>
-            <p><strong>Email:</strong> ${email}</p>
+            <p>Email: <span class="email">${email}</span></p>
             <p>Please add this email to your newsletter mailing list.</p>
           </div>
         </div>
@@ -88,7 +89,7 @@ async function handleNewsletterSubscription(email: string) {
 
 async function handleFormSubmission(formData: any) {
   console.log('Sending form submission email');
-  const { fullName, email, phone, userType, grade, schoolName, desiredOutcome, comments } = formData
+  const { fullName, email, phone, userType, grade, schoolName, preferredField, preferredRole, comments } = formData
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
@@ -122,7 +123,8 @@ async function handleFormSubmission(formData: any) {
             <div class="field"><span class="label">User Type:</span> ${userType}</div>
             <div class="field"><span class="label">Grade:</span> ${grade}</div>
             <div class="field"><span class="label">School Name:</span> ${schoolName}</div>
-            <div class="field"><span class="label">Desired Outcome:</span> ${desiredOutcome}</div>
+            <div class="field"><span class="label">Preferred Field:</span> ${preferredField}</div>
+            <div class="field"><span class="label">Preferred Role:</span> ${preferredRole}</div>
             <div class="field"><span class="label">Comments:</span> ${comments}</div>
           </div>
         </div>
